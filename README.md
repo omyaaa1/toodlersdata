@@ -18,7 +18,7 @@ toodlersdata ingests hardware data from Arduino + ESP32 and transforms it into a
 - Weather snapshot + forecast integration
 - Power availability and voltage monitoring
 - In-app farm assistant (chatbot-lite)
-- Built-in translator for Hindi/Marathi usage
+- Working data import and quick analysis (CSV/JSON)
 - Historical archives with export (CSV/JSON/PDF ready)
 
 ## UI Philosophy
@@ -29,13 +29,13 @@ toodlersdata ingests hardware data from Arduino + ESP32 and transforms it into a
 
 ## Architecture (High-Level)
 - `Next.js` App Router frontend
-- `Next API routes` for ingestion + auth placeholders
+- `Next API routes` for ingestion + auth
 - `MongoDB/PostgreSQL` ready (not wired)
-- `NextAuth/Firebase` ready for Google OAuth (not wired)
+- `NextAuth` wired for Google OAuth
 
 ## Hardware Data Flow (Example)
-1. Sensor → ESP32/Arduino
-2. Device → `/api/sensors` (REST/MQTT/WebSocket gateway)
+1. Sensor -> ESP32/Arduino
+2. Device -> `/api/sensors` (REST/MQTT/WebSocket gateway)
 3. Validation + timestamp + geo tagging
 4. Analytics + predictions
 5. UI updates in real time
@@ -48,6 +48,8 @@ NEXT_PUBLIC_WEATHER_PROVIDER=mock
 WEATHER_API_KEY=your_key
 GOOGLE_CLIENT_ID=your_id
 GOOGLE_CLIENT_SECRET=your_secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_secret_string
 DATABASE_URL=your_db_url
 ```
 

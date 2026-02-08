@@ -16,9 +16,12 @@ export default function LoginPage() {
               of every device, farm, and field.
             </p>
             <div className="mt-8 flex flex-col gap-3">
-              <Button variant="primary" size="lg">
+              <a
+                className="border border-[var(--td-accent)] bg-[var(--td-accent)] px-5 py-3 text-center text-xs uppercase tracking-[0.3em] text-black transition hover:translate-y-[-2px]"
+                href="/api/auth/signin/google"
+              >
                 Continue with Google
-              </Button>
+              </a>
               <Button variant="outline" size="lg">
                 Create Account
               </Button>

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
 import { Stat } from "@/components/ui/stat";
 import { FarmAssistant } from "@/components/ui/assistant";
-import { Translator } from "@/components/ui/translator";
+import { DataImport } from "@/components/ui/data-import";
 import { alerts, deviceHealth } from "@/lib/data/mock";
 import { getMockWeather } from "@/lib/weather";
 
@@ -88,7 +88,7 @@ export default function DashboardPage() {
 
       <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <FarmAssistant />
-        <Translator />
+        <DataImport />
       </section>
     </AppShell>
   );
