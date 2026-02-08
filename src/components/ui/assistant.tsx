@@ -35,14 +35,15 @@ export function FarmAssistant() {
 
   const send = () => {
     if (!input.trim()) return;
-    const userMessage = { role: "user", text: input };
+    const userMessage: Message = { role: "user", text: input };
     const match = canned.find((item) =>
       input.toLowerCase().includes(item.q.toLowerCase().split(" ")[0])
     );
     const reply =
       match?.a ??
       "I can analyze sensor anomalies, irrigation needs, and crop suitability.";
-    setMessages((prev) => [...prev, userMessage, { role: "assistant", text: reply }]);
+    const replyMessage: Message = { role: "assistant", text: reply };
+    setMessages((prev) => [...prev, userMessage, replyMessage]);
     setInput("");
   };
 
