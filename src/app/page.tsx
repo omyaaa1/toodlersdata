@@ -1,65 +1,111 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const features = [
+  "Real-time ingestion from Arduino + ESP32",
+  "10+ analytics views with anomaly detection",
+  "Prediction engine for temperature, moisture, and yield risk",
+  "Weather-aware recommendations and power status",
+  "Multi-farm, multi-device, offline buffering",
+  "Sharp-edged, 90% black, data-first UI",
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-[var(--td-bg)] text-[var(--td-fg)]">
+      <div className="grid-mask">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <header className="flex items-center justify-between border-b border-[var(--td-border)] pb-6">
+            <div className="flex items-center gap-3">
+              <div className="h-3 w-3 bg-[var(--td-accent)]" />
+              <span className="text-lg tracking-[0.2em]">TOODLERSDATA</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Link
+                className="border border-[var(--td-border)] px-4 py-2 text-xs uppercase tracking-[0.3em] transition hover:border-[var(--td-accent)]"
+                href="/login"
+              >
+                Login
+              </Link>
+              <Link
+                className="border border-[var(--td-accent)] bg-[var(--td-accent)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-black transition hover:translate-y-[-2px]"
+                href="/dashboard"
+              >
+                Enter Console
+              </Link>
+            </div>
+          </header>
+
+          <main className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <section className="space-y-8">
+              <p className="text-xs uppercase tracking-[0.4em] text-[var(--td-muted)]">
+                Data → Insight → Prediction → Action
+              </p>
+              <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
+                A decision engine for farms powered by live sensor intelligence.
+              </h1>
+              <p className="max-w-xl text-sm text-[var(--td-muted)] md:text-base">
+                toodlersdata turns raw hardware signals into immediate, reliable
+                actions. Monitor every field, predict risks early, and optimize
+                resources with precision-grade analytics.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  className="border border-[var(--td-accent)] bg-[var(--td-accent)] px-5 py-3 text-xs uppercase tracking-[0.3em] text-black transition hover:translate-y-[-2px]"
+                  href="/dashboard"
+                >
+                  Launch Dashboard
+                </Link>
+                <Link
+                  className="border border-[var(--td-border)] px-5 py-3 text-xs uppercase tracking-[0.3em] transition hover:border-[var(--td-accent)]"
+                  href="/analytics"
+                >
+                  Explore Analytics
+                </Link>
+              </div>
+              <div className="grid gap-3 text-xs text-[var(--td-muted)]">
+                <div>Latency &lt; 2s · Offline buffer sync · Secure ingestion</div>
+                <div>Device health, calibration, and anomaly scoring included</div>
+              </div>
+            </section>
+
+            <section className="panel p-6">
+              <div className="flex items-center justify-between border-b border-[var(--td-border)] pb-4">
+                <span className="text-xs uppercase tracking-[0.3em] text-[var(--td-muted)]">
+                  Core Capabilities
+                </span>
+                <span className="text-xs text-[var(--td-accent)]">LIVE</span>
+              </div>
+              <ul className="mt-6 space-y-4 text-sm">
+                {features.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 border-b border-[var(--td-border)] pb-3"
+                  >
+                    <span className="mt-1 h-2 w-2 bg-[var(--td-accent)]" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </main>
+
+          <section className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              ["Farm Health Score", "86", "Confidence 92%"],
+              ["Power Stability", "GRID+SOLAR", "Voltage OK"],
+              ["Weather Impact", "LOW", "Rain in 6h"],
+            ].map(([title, value, meta]) => (
+              <div key={title} className="panel p-5">
+                <p className="text-xs uppercase tracking-[0.3em] text-[var(--td-muted)]">
+                  {title}
+                </p>
+                <p className="mt-3 text-3xl">{value}</p>
+                <p className="mt-2 text-xs text-[var(--td-muted)]">{meta}</p>
+              </div>
+            ))}
+          </section>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }

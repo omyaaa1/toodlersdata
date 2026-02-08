@@ -1,0 +1,15 @@
+:root {
+  --td-bg: #070707;
+  --td-bg-2: #0b0d10;
+  --td-panel: #0c0f12;
+  --td-border: #1f232a;
+  --td-fg: #f5f7fa;
+  --td-muted: #9aa0a6;
+  --td-accent: #d4ff3f;
+  --td-accent-2: #00f0ff;
+  --td-danger: #ff3b3b;
+  --td-warn: #ffb347;
+  --td-success: #4dff9a;
+  --td-glow: 0 0 0 1px var(--td-border),
+    0 0 40px rgba(0, 255, 160, 0.12);
+}

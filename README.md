@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# toodlersdata
 
-## Getting Started
+Decision-grade analytics for farms. Real-time sensor intelligence, prediction, and recommendations.
 
-First, run the development server:
+Live Demo: `https://toodlersdata.vercel.app`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+toodlersdata ingests hardware data from Arduino + ESP32 and transforms it into a minimalist, data-first command center. It focuses on real-time analysis, fast filtering, anomaly detection, and clear recommendations for farmers.
+
+## Core Features (Concise)
+- Real-time ingestion (REST / MQTT / WebSocket ready)
+- Multi-device and multi-farm support
+- Device health + calibration tracking
+- 10+ analytics views (line, bar, area, scatter, correlation, distribution, trend)
+- Anomaly alerts and data confidence scoring
+- Prediction engine (rule-based, ML-ready)
+- Recommendations for crop, irrigation, fertilizer, power usage
+- Weather snapshot + forecast integration
+- Power availability and voltage monitoring
+- Historical archives with export (CSV/JSON/PDF ready)
+
+## UI Philosophy
+- 90% black, ultra-minimal
+- Sharp edges only (no rounded corners)
+- Data-first layout with smooth transitions
+- High-contrast charts and button-driven navigation
+
+## Architecture (High-Level)
+- `Next.js` App Router frontend
+- `Next API routes` for ingestion + auth placeholders
+- `MongoDB/PostgreSQL` ready (not wired)
+- `NextAuth/Firebase` ready for Google OAuth (not wired)
+
+## Hardware Data Flow (Example)
+1. Sensor → ESP32/Arduino
+2. Device → `/api/sensors` (REST/MQTT/WebSocket gateway)
+3. Validation + timestamp + geo tagging
+4. Analytics + predictions
+5. UI updates in real time
+
+## Environment Variables
+Create `.env.local`:
+```
+NEXT_PUBLIC_APP_NAME=toodlersdata
+NEXT_PUBLIC_WEATHER_PROVIDER=mock
+WEATHER_API_KEY=your_key
+GOOGLE_CLIENT_ID=your_id
+GOOGLE_CLIENT_SECRET=your_secret
+DATABASE_URL=your_db_url
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
+```
+npm install
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment (Vercel)
+1. Push to GitHub
+2. Import the repo in Vercel
+3. Add environment variables
+4. Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
+```
+src/
+  app/
+    login/
+    dashboard/
+    analytics/
+    predictions/
+    recommendations/
+    history/
+  components/
+    charts/
+    layout/
+    ui/
+  lib/
+    analytics/
+    predictions/
+    weather.ts
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- This repo is production-ready for UI/UX and front-end workflow.
+- API routes are intentionally lightweight placeholders for fast integration.
