@@ -1,12 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { t, type Lang } from "@/lib/i18n";
 
 const nav = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/analytics", label: "Analytics" },
-  { href: "/predictions", label: "Predictions" },
-  { href: "/recommendations", label: "Recommendations" },
-  { href: "/history", label: "History" },
+  { href: "/dashboard", key: "nav.dashboard" },
+  { href: "/analytics", key: "nav.analytics" },
+  { href: "/predictions", key: "nav.predictions" },
+  { href: "/recommendations", key: "nav.recommendations" },
+  { href: "/history", key: "nav.history" },
 ];
 
 type Props = {
@@ -16,6 +20,17 @@ type Props = {
 };
 
 export function AppShell({ title, subtitle, children }: Props) {
+  const [lang, setLang] = useState<Lang>("en");
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("td_lang") as Lang | null;
+    if (saved) setLang(saved);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("td_lang", lang);
+  }, [lang]);
+
   return (
     <div className="min-h-screen bg-[var(--td-bg)] text-[var(--td-fg)]">
       <div className="grid-mask">
@@ -32,17 +47,33 @@ export function AppShell({ title, subtitle, children }: Props) {
                 </p>
               ) : null}
             </div>
-            <nav className="flex flex-wrap gap-3">
-              {nav.map((item) => (
-                <Link
-                  key={item.href}
-                  className="border border-[var(--td-border)] px-4 py-2 text-[10px] uppercase tracking-[0.3em] transition hover:border-[var(--td-accent)]"
-                  href={item.href}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 border border-[var(--td-border)] px-3 py-2 text-[10px] uppercase tracking-[0.3em]">
+                <span className="text-[var(--td-muted)]">
+                  {t("label.language", lang)}
+                </span>
+                <select
+                  className="bg-transparent text-[var(--td-fg)] outline-none"
+                  value={lang}
+                  onChange={(event) => setLang(event.target.value as Lang)}
                 >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+                  <option value="en">EN</option>
+                  <option value="hi">HI</option>
+                  <option value="mr">MR</option>
+                </select>
+              </div>
+              <nav className="flex flex-wrap gap-3">
+                {nav.map((item) => (
+                  <Link
+                    key={item.href}
+                    className="border border-[var(--td-border)] px-4 py-2 text-[10px] uppercase tracking-[0.3em] transition hover:border-[var(--td-accent)]"
+                    href={item.href}
+                  >
+                    {t(item.key, lang)}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </header>
           <main className="mt-8">{children}</main>
         </div>

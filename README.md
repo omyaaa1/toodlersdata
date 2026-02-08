@@ -17,6 +17,8 @@ toodlersdata ingests hardware data from Arduino + ESP32 and transforms it into a
 - Recommendations for crop, irrigation, fertilizer, power usage
 - Weather snapshot + forecast integration
 - Power availability and voltage monitoring
+- In-app farm assistant (chatbot-lite)
+- Built-in translator for Hindi/Marathi usage
 - Historical archives with export (CSV/JSON/PDF ready)
 
 ## UI Philosophy
